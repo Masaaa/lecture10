@@ -18,13 +18,32 @@ var playList = [
     title: "title D",
     artist: "artist D",
     src: "04.mp3"
-  }  
+  }
 ];
 
 function createElement(music){
   var item = document.createElement("li");
-  item.textContent = music.title;
+
+  var title = document.createElement("p");
+  title.textContent = music.title;
+
+  var artist = document.createElement("p");
+  artist.textContent = music.artist;
+
+
+  item.appendChild(title);
+  item.appendChild(artist);
+
+  function handler(){
+    var player = document.querySelector("audio");
+    player.src = music.src;
+    player.play();
+  };
+
+  item.addEventListener("click", handler);
+
   return item;
+
 }
 
 function loadPlayList(){
